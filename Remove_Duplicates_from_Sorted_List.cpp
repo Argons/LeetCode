@@ -1,4 +1,5 @@
-// Given a sorted linked list, delete all duplicates such that each element appear only once.
+// Given a sorted linked list, delete all duplicates 
+// such that each element appear only once.
 // For example,
 // Given 1->1->2, return 1->2.
 // Given 1->1->2->3->3, return 1->2->3.
@@ -18,12 +19,13 @@ public:
     ListNode *deleteDuplicates(ListNode *head) {
         if (head == NULL)
             return NULL;
-        set<int> table; // store all unique items in the list in a lookup table.
+        set<int> table; // store all unique items in the list for lookup.
         ListNode *current = head;
         table.insert(current->val);
         while (current->next != NULL) {
             if (table.find(current->next->val) != table.end()) {
-            // if current->next is a duplicate, pointer 'current' remains the same node.
+            // if current->next is a duplicate, 
+            // pointer 'current' will remain the same node.
                 current->next = current->next->next;
             } else {
                 table.insert(current->next->val);
