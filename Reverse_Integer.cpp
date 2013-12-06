@@ -13,9 +13,8 @@ class Solution {
             result += result * 10 + n % 10;
             n /= 10;
         }
-        if (x < 0) {
+        if (x < 0)
             return -result;
-        }
         return result;
     }
 };
