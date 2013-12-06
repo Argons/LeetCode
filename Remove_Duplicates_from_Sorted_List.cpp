@@ -27,9 +27,9 @@ public:
                 current->next = current->next->next;
             } else {
                 table.insert(current->next->val);
-		        current = current->next; 
-		    }
+                current = current->next; 
+            }
         }
         return head;
-	}
+    }
 };
