@@ -16,19 +16,20 @@
 class Solution {
 public:
     ListNode *deleteDuplicates(ListNode *head) {
-		if (head == NULL)
-        	return NULL;
+        if (head == NULL)
+            return NULL;
         set<int> table; // store all unique items in the list in a lookup table.
         ListNode *current = head;
         table.insert(current->val);
         while (current->next != NULL) {
-        	if (table.find(current->next->val) != table.end()) {
+            if (table.find(current->next->val) != table.end()) {
             // if current->next is a duplicate, pointer 'current' remains the same node.
-            	current->next = current->next->next;
+                current->next = current->next->next;
             } else {
-            	table.insert(current->next->val);
+                table.insert(current->next->val);
 		        current = current->next; 
 		    }
-		return head;
+        }
+        return head;
 	}
 };
