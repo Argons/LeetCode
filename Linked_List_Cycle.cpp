@@ -12,7 +12,7 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
- 		if (head == NULL || head->next == NULL)
+ 		     if (head == NULL || head->next == NULL)
             return false;
             
         ListNode *n1 = head;
@@ -23,7 +23,7 @@ public:
             n1 = n1->next;
             n2 = n2->next;
             if (n2 == NULL)
-            	break;
+                break;
             // n2 traverses twice as fast as n1, 
             // if a cycle exists, they will meet eventually.
             n2 = n2->next;
