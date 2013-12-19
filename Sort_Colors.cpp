@@ -9,7 +9,7 @@ class Solution {
 public:
     void sortColors(int A[], int n) {
         if (n < 2)  return;
-        int red = 0, white = red; blue = n-1;
+        int red = 0, white = red, blue = n-1;
 
         while (white <= blue) {
             if (A[white] == 0)
