@@ -11,7 +11,7 @@
 class Solution {
 public:
     ListNode *reverseBetween(ListNode *head, int m, int n) {
-        ListNode rhead(0);
+        ListNode rhead(0); // as the node before head in case m = 1
         rhead.next = head;
 
         ListNode *preM, *prev = &rhead;
@@ -23,6 +23,9 @@ public:
                 head = head->next;
             } 
             else {
+                // preM -> prev -> head > nextHead -> ...
+                // as to reverse pointer relations of 'prev' and 'head', 
+                // then insert updated next 'head' pointer after 'preM'.
                 prev->next = head->next;
                 head->next = preM->next;
                 preM->next = head;
