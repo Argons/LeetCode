@@ -34,15 +34,17 @@ public:
 // use hash table, O(n) time complexity
 int longestConsecutive(vector<int> &num) {
     unordered_map<int, int> s;
-    int maxlen = 0;
+    // initialize the hash table
     for (vector<int>::iterator it = num.begin(); it != num.end(); it++) 
         s[*it] = 1;
 
     // each element in the array can be accessed at most twice,
     // therefore the amortized running time is O(n).
+    int maxlen = 0;
     for (vector<int>::iterator it = num.begin(); it != num.end(); it++) {
         if (s[*it] == 1) {
             s[*it] = 0;
+    int maxlen = 0;
             int len = 1;
             int left  = *it - 1;
             int right = *it + 1;

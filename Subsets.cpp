@@ -52,10 +52,9 @@ vector<vector<int> > subsets(vector<int> &S) {
     vector<vector<int> > result(1);
     for (int i = 0; i < S.size(); i++) {
         int j = result.size();
-        while (j > 0) {
+        while (j-- > 0) {
             result.push_back(result[j]);
             result.back().push_back(S[i]);
-            j--;
         }
     }
     return result;

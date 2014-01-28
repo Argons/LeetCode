@@ -45,3 +45,49 @@ public:
         return res;
     }
 };
+
+// without using 'set':
+void traverse(vector<int> &s, int start, vector<vector<int> > &result, vector<int> &item)
+{
+    result.push_back(item);
+    for (int i = start; i < s.size(); ++i) {
+        if (i != start && s[i] == s[i-1])
+            continue;  // to avoid duplicates
+        item.push_back(s[i]);
+        traverse(s, i+1, result, item);
+        item.pop_back();
+    }
+}
+vector<vector<int> > subsetsWithDup(vector<int> &S) 
+{
+    vector<vector<int> > result;
+    vector<int> item;
+    sort(S.begin(), S.end());
+    traverse(S, 0, result, item);
+    return result;
+}
+
+// without using recursion
+vector<vector<int> > subsetsWithDup(vector<int> &S) 
+{
+    vector<vector<int> > result(1);
+    sort(S.begin(), S.end());
+    int unique = 0;
+    for (int i = 0; i < S.size(); i++) {
+        int size = result.size();
+        if (i != 0 && S[i] == S[i-1]) {
+            for (int j = unique; j < size; j++) {
+                result.push_back(result[j]);
+                result.back().push_back(S[i]); 
+            }
+            unique = size;
+            continue;
+        }
+        unique = size;
+        for (int j = 0; j < size; j++) {
+            result.push_back(result[j]);
+            result.back().push_back(S[i]);
+        }
+    }
+    return result;
+}
