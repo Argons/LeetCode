@@ -21,6 +21,21 @@
 // ]
 
 class Solution {
+    public:
+        vector<vector<string> > solveNQueens(int n) {
+            vector<vector<string> > result;
+            vector<string> solution;
 
+            if (n == 1) {
+                solution.push_back("Q");
+                result.push_back(solution);
+                return result;
+            }
+            if (n < 4) {
+                return result;
+            }
+        
+
+        }
 
 };
