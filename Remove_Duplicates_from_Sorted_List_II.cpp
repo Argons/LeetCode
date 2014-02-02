@@ -13,10 +13,8 @@ public:
 
         ListNode *p = head->next;
         if (head->val == p->val) {
-            while (head->val == p->val) {
+            while (p != NULL && head->val == p->val) {
                 p = p->next;
-                if (p == NULL)
-                    break;
             }
             return deleteDuplicates(p);
         }
@@ -24,3 +22,29 @@ public:
         return head;    
     }
 };
+
+// without recursion
+ListNode *deleteDuplicates(ListNode *head) 
+{
+    if (head == NULL || head->next == NULL)
+        return head;
+
+    ListNode preHead(0);
+    preHead.next = head;
+    ListNode *pre = &preHead, *current = head;
+
+    while (current != NULL) {
+        int value = current->val;
+        if (current->next != NULL && current->next->val == value) {
+            while (current != NULL && current->val == value) {
+                pre->next = current->next;
+                current = current->next;
+            }
+        } 
+        else {
+            pre = current;
+            current = current->next;
+        }
+    }
+    return preHead.next;
+}
