@@ -15,28 +15,23 @@ class Solution {
             int size = prices.size();
             int dfOne[size];
             int dfTwo[size];
-            int mins[size];
-            int maxs[size];
 
             // dp[0...i] => dp[0...i+1]
             // dp[j+1...n] => dp[j...n]
-            mins[0] = prices[0];
-            for (int i = 1; i < size; i++) {
-                mins[i] = min(mins[i-1], prices[i]);
-            }
+            int MIN = prices[0];
             dpOne[0] = 0;
             for (int i = 1; i < size; i++) {
-                dpOne[i] = max(dpOne[i-1], prices[i] - mins[i]);
+                MIN = min(prices[i], MIN);
+                dpOne[i] = max(dpOne[i-1], prices[i] - MIN);
             }
-            maxs[size-1] = prices[size-1];
-            for (int i = size-2; i >= 0; i--) {
-                maxs[i] = max(maxs[i+1], prices[i]);
-            }
+
+            int MAX = prices[size-1];
             dpTwo[size-1] = 0;
             for (int i = size-2; i >= 0; i--) {
-                dpTwo[i] = max(dpTwo[i+1], maxs[i] - prices[i]);
+                MAX = max(prices[i], MAX);
+                dpTwo[i] = max(dpTwo[i+1], MAX - prices[i]);
             }
-            
+
             int result = 0;
             for (int i = 0; i < prices.size(); i++) {
                 int profit = dpOne[i] + dpTwo[i];
