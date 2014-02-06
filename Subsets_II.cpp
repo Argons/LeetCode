@@ -21,7 +21,7 @@ public:
     void traverse(vector<int> &S, int start, set<vector<int> > &result, 
                   vector<int> &item) 
     {
-        result.insert(item); // insert item before 'start' out of bounds check
+        result.insert(item); // insert item before the out-of-bound check
         if (start >= S.size())
             return;
         item.push_back(S[start]);
@@ -47,8 +47,8 @@ public:
 };
 
 // without using 'set':
-void traverse(vector<int> &s, int start, vector<vector<int> > &result, vector<int> &item)
-{
+void traverse(vector<int> &s, int start, vector<vector<int> > &result, 
+              vector<int> &item) {
     result.push_back(item);
     for (int i = start; i < s.size(); ++i) {
         if (i != start && s[i] == s[i-1])

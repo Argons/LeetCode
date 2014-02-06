@@ -7,16 +7,16 @@
 
 class Solution {
 public:
-    vector<vector<int> > combine(int n, int k) {
+    vector<vector<int> > combine(int n, int k) 
+    {
         vector<vector<int> > result;
         vector<int> item;
         getCombined(n, k, 1, result, item);
         return result;
     }
 
-    void getCombined(int n, int k, int kth,
-                                     vector<vector<int> > &result,
-                                     vector<int> &item) {
+    void getCombined(int n, int k, int kth, vector<vector<int> > &result, 
+                     vector<int> &item) {
         if (item.size() == k) {
             result.push_back(item);
             return;
