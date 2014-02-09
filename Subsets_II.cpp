@@ -46,7 +46,7 @@ public:
     }
 };
 
-// without using 'set':
+// without using set or hashmap:
 void traverse(vector<int> &s, int start, vector<vector<int> > &result, 
               vector<int> &item) {
     result.push_back(item);
@@ -72,21 +72,23 @@ vector<vector<int> > subsetsWithDup(vector<int> &S)
 {
     vector<vector<int> > result(1);
     sort(S.begin(), S.end());
-    int unique = 0;
+    int unique = 0; // record the start of unique items in result
     for (int i = 0; i < S.size(); i++) {
         int size = result.size();
         if (i != 0 && S[i] == S[i-1]) {
             for (int j = unique; j < size; j++) {
+            // if next int in S is the same, it starts at unique.
                 result.push_back(result[j]);
                 result.back().push_back(S[i]); 
             }
             unique = size;
-            continue;
         }
-        unique = size;
-        for (int j = 0; j < size; j++) {
-            result.push_back(result[j]);
-            result.back().push_back(S[i]);
+        else {
+            unique = size;
+            for (int j = 0; j < size; j++) {
+                result.push_back(result[j]);
+                result.back().push_back(S[i]);
+            }
         }
     }
     return result;
