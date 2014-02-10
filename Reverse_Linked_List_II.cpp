@@ -19,7 +19,7 @@ public:
             if (i <= m) {
                 if (i == m) 
                     preM = prev;
-                prev = head;
+                prev = head;  // 'prev' will be the tail of reversed sub-list.
                 head = head->next;
             } 
             else {
