@@ -21,21 +21,45 @@
 // ]
 
 class Solution {
-    public:
-        vector<vector<string> > solveNQueens(int n) {
-            vector<vector<string> > result;
-            vector<string> solution;
+    vector<vector<string> > result;
 
-            if (n == 1) {
-                solution.push_back("Q");
-                result.push_back(solution);
-                return result;
-            }
-            if (n < 4) {
-                return result;
-            }
-        
-
+public:
+    vector<string> getBoard(vector<int> &queenPos, int n) {
+        vector<string> board(n, string(n, '.'));
+        for (int i = 0; i < n; i++) {
+            board[i][queenPos[i]] = 'Q';
         }
+        return board;  
+    }
 
+    bool check(vector<int> &queenPos, int row, int col, int n) {
+        for (int i = 0; i < row; i++) {
+            if (queenPos[i] == col) 
+                return false; 
+            if (abs(i-row) == abs(queenPos[i]-col)) 
+                return false;
+        }
+        return true;
+    }
+
+    void putQueen(vector<int> &queenPos, int row, int n) {
+        if (row == n) {
+            result.push_back(getBoard(queenPos, n));
+            return;
+        }
+        for (int col = 0; col < n; col++) {
+            if (check(queenPos, row, col, n)) {
+                queenPos[row] = col;
+                putQueen(queenPos, row+1, n);
+                queenPos[row] = -1;
+            }
+        }
+    }
+
+    vector<vector<string> > solveNQueens(int n) {
+        result.clear();
+        vector<int> queenPos(n, -1);
+        putQueen(queenPos, 0, n);
+        return result;
+    }
 };
