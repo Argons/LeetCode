@@ -8,7 +8,8 @@
 class Solution {
 public:
     void permute(vector<int> &num, vector<bool> &used, 
-                 vector<vector<int> > &result, vector<int> &item) {
+                 vector<vector<int> > &result, 
+                 vector<int> &item) {
         if (item.size() == num.size()) {
             result.push_back(item);
             return;
@@ -27,8 +28,7 @@ public:
         }
     }
 
-    vector<vector<int> > permuteUnique(vector<int> &num)
-    {
+    vector<vector<int> > permuteUnique(vector<int> &num) {
         vector<vector<int> > result;
         vector<int> item;
         vector<bool> used(num.size(), false);

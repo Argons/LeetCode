@@ -6,8 +6,7 @@
 
 class Solution {
     public:
-        vector<vector<int> > permutation(vector<int> &num, int len)
-        {
+        vector<vector<int> > permutation(vector<int> &num, int len) {
             vector<vector<int> > result;
             if (len == 0)
                 return result;
