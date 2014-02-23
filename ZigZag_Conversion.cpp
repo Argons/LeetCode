@@ -12,5 +12,9 @@
 
 class Solution {
 public:
+    string zigzag(string, int ) {
+    
+    
+    }
 
 };
