@@ -27,13 +27,7 @@ public:
             if (ret > INT_MAX/10 || (ret == INT_MAX/10) && 
                                     (*str-'0') > INT_MAX%10) {  
                 // check overflow
-                if (sign == 1) {
-                    ret = INT_MAX;
-                } else {
-                    ret = INT_MIN;
-                    sign = 1;
-                }
-                break;
+                return sign == 1 ? INT_MAX : INT_MIN;
             }
             ret = 10 * ret + (*str - '0');
             str++;
