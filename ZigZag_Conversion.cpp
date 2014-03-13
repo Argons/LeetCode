@@ -10,11 +10,4 @@
 // number of rows:  string convert(string text, int nRows);
 // convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
 
-class Solution {
-public:
-    string zigzag(string, int ) {
-    
-    
-    }
 
-};
