@@ -5,15 +5,16 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        vector<int> table(256, -1);
-        int i = 0, end = 0, maxLen = 0;
+        vector<int> table(256, -1);  // record position of chars
+        int start = 0, end = 0, maxLen = 0;
         while (end < s.length()) {
-            if (table[s[end]] >= i) {
-                i = index + 1;  // find duplicate within, reset start index.
+            if (table[s[end]] >= start) {
+                // if find duplicate within start and end, reset start index
+                start = index + 1;  
             }
             table[s[end]] = end;
-            maxLen = max(maxLen, end-i+1);
             end++;
+            maxLen = max(maxLen, end-start);
         }
         return maxLen;
     }

@@ -20,15 +20,17 @@ public:
 class Solution {
 public:
     int sqrt(int x) {
+        /// use long long type to avoid overflow
         long long start = 0, end = x/2 + 1, mid;
         while (start <= end) {
             mid = (start + end) / 2;
-            if (mid * mid - x == 0)
+            if (mid * mid == x)
                 return mid;
             if (mid * mid > x) {
                 end = mid - 1;
             } else {
-                if ((mid+1) * (mid+1) > x)
+                // square root of integer cannot be greater than the true value
+                if ((mid+1) * (mid+1) > x)  
                     return mid;
                 else
                     start = mid + 1;
