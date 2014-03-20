@@ -15,15 +15,21 @@ public:
         int i = 0, maxRec = 0;
         while (i < h.size()) {
             if (s.empty() || h[s.top()] <= h[i]) {
-                s.push(i); // record the indexes of ascending order by now.
+                s.push(i); // store the indexes of ascending order by now.
                 i++;
             }
             else {
                 int t = s.top();
                 s.pop(); 
-                // while h[i] is less than the top of stack, keep calculating
-                // rectangles that start with t then pop t out, till it's not.
-                maxRec = max(maxRec, h[t] * (s.empty() ? i : i-1-s.top()));
+                // Note: the smaller item is the bottle neck.
+                // while h[i] is less than the top of stack, pop it out, then 
+                // keep calculating rectangles that start with the h[new_top] 
+                // and end before h[i], (since items between new_top and top
+                // must be greater than h[top]) utill h[i] is bigger than the 
+                // new top of stack, then push it in.
+                // when reach the end of h, since 0 is smaller than any item in
+                // the stack, all rectangle areas will be computed backwards.
+                maxRec = max(maxRec, h[t] * (s.empty() ? i : i-s.top()-1));
             }
         }
         return maxRec;
