@@ -39,7 +39,7 @@ public:
                     result[start + 2*j+1] = s[unit-i + j*unit];
                 }
             }
-            start += 2 * j - (unit-i + (j-1)*unit >= len);
+            start += 2 * j - (unit-i + ((j-1)*unit >= len));
         }
         return result;
     }
