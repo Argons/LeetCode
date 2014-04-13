@@ -26,3 +26,29 @@ public:
         return maxLen;
     }
 };
+
+int longestValidParentheses(const string &s) {
+    int maxLen = 0;
+    const char *str = s.c_str();
+    const char *start = str;
+    stack<const char*> st;
+
+    while (*str != '\0') {
+        if (*str == '(') {
+            st.push(str);
+        } else {
+            if (!st.empty()) {
+                st.pop();
+                if (st.empty()) {
+                    maxLen = max(maxLen, str-start+1);
+                } else {
+                    maxLen = max(maxLen, str-st.top());
+                }
+            } else {
+                start = str+1; // mark as the start of the next valid string
+            }
+        }
+        str++;
+    }
+    return maxLen;
+}
