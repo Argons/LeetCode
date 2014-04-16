@@ -17,7 +17,7 @@ public:
                     duplicate++;
                     continue;
                 }
-                float k = points[i].x == points[j].x ? INT_MAX : (float)\
+                float k = (points[i].x == points[j].x) ? INT_MAX : (float)\
                     (points[j].y - points[i].y) / (points[j].x - points[i].x);
                 mp[k]++;
             }
