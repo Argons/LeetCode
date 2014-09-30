@@ -1,9 +1,9 @@
-// Design and implement a data structure for Least Recently Used (LRU) cache. 
+// Design and implement a data structure for Least Recently Used (LRU) cache.
 // It should support the following operations: get and set.
 
-// get(key) - Get the value (will always be positive) of the key if the key 
+// get(key) - Get the value (will always be positive) of the key if the key
 // exists in the cache, otherwise return -1.
-// set(key, value) - Set or insert the value if the key is not already present. 
+// set(key, value) - Set or insert the value if the key is not already present.
 // When the cache reached its capacity, it should invalidate the least recently
 // used item before inserting a new item.
 
@@ -24,8 +24,8 @@ class LRUCache{
                 return -1;
             cacheEntry cur = *cacheMap[key];
             cacheList.erase(cacheMap[key]);
-            cacheList.push_front(cur); // replace it at the head
-            cacheMap[key] = cacheList.begin();
+            cacheList.push_front(cur); // update the most recently used item at the front
+            cacheMap[key] = cacheList.begin(); // the cursor in cache table must be updated after cache list
             return cur.value;
         }
 
@@ -46,7 +46,7 @@ class LRUCache{
         }
 
     private:
-        unordered_map<int, list<cacheEntry>::iterator> cacheMap;
-        list<cacheEntry> cacheList; // store the recently add/used in the front
+        unordered_map<int, list<cacheEntry>::iterator> cacheMap; // key-cursor pairs
+        list<cacheEntry> cacheList; // store the recently set/read at the front
         int cacheSize;
 };
